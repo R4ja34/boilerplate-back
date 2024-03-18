@@ -14,10 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '2ff14ec7fdb2ab36ddf87bc023d52e588ac2ad3864fc4b0954223a3abf410982e15f2d6be0aa8b507e87a31081610c6253448ef14f7be48aa4540a94df0e096e'
-    config.jwt do |jwt|
-      jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
-    end
+  # config.secret_key = '96ac87ac560a7c893573bb5bd8b561b98bd3f6f2ba41653ce4cf5ba3cbd835ce36d94ce3ed0b968c1201473ac2de37f9dacd32145d16e417ca1a812554f4c854'
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -128,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '2c278f6d2bb03a05551b1e477a6b024dda99ad21c4b0f9dcbbe0551dcf50ee3a2bd5120614068a785b916d348364b824c85951106bc8e9b63fd43181c7e6733d'
+  # config.pepper = 'b82c14bd969e4e32d7480db797574eccbd6198f546df71d6941b9ca4ce451b34009e77488e48129a685c83741c1bf6c7867e97f82517364999771c247002b1a9'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -154,7 +152,9 @@ Devise.setup do |config|
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
   # config.confirm_within = 3.days
-
+  config.jwt do |jwt|
+		jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+	end
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
@@ -265,7 +265,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []  
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

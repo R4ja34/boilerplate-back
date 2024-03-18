@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+	# Il faut ajouter les deux modules commençant par jwt
 	devise :database_authenticatable, :registerable,
-	:jwt_authenticatable,
-	jwt_revocation_strategy: JwtDenylist
-        #  :recoverable, :rememberable, :validatable
+        :recoverable, :rememberable, :validatable, :jwt_authenticatable,
+        jwt_revocation_strategy: JwtDenylist
+  validates :email, presence: true
 end
